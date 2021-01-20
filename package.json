@@ -1,0 +1,14 @@
+{
+  "name": "sovtech-fullstack-engineer-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-server": "cd ./chuck-server && node index.js",
+    "start-app": "cd ./react-spa/chuck-jokes && npm start",
+    "install-modules": "cd ./chuck-server && yarn install && cd.. && cd ./react-spa/chuck-jokes && yarn install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
