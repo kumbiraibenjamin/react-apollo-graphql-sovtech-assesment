@@ -3,21 +3,26 @@ import React, { useState } from "react";
 
 import { useQuery } from "@apollo/react-hooks"
 
-import { getCategories, getRandomJoke } from "../apollo/Query"
+import { getCategories, } from "../apollo/Query"
 
 import { Button } from './Button'
 import { Joke } from './Joke'
 
 const Categories = () => {
     const { loading, error, data } = useQuery(getCategories);
-
-    const [joke, setJoke] = useState("");
+    const initialJoke = {
+        icon_url: "",
+        id: "",
+        url: "",
+        value: ""
+    }
+    const [joke, setJoke] = useState(initialJoke);
     const [jokeLoading, setLoading] = useState(false);
     const [jokeError, setError] = useState(undefined);
 
     const handleClick = (query: any) => {
         const {data, loading, error } = query
-        setJoke(data.getJoke.value)
+        setJoke(data.getJoke)
         setLoading(loading)
         setError(error)
     }
@@ -29,7 +34,7 @@ const Categories = () => {
         <div>
             {data.categories.map((category: string, index: number) => <Button onCategoryClick={handleClick} key={index} category={category} index={ index }/>)}
             <div>
-                <Joke value={joke} loading={jokeLoading} error={ jokeError }/>
+                <Joke data={joke} loading={jokeLoading} error={ jokeError }/>
             </div>
         </div>
     );

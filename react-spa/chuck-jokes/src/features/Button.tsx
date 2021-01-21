@@ -33,7 +33,6 @@ const Button = ({ category, onCategoryClick, index }: Category) => {
         key={index}
         onClick={() => {
           refetch()
-          console.log('clicked')
           onCategoryClick({data, loading, error})
         }}>
         {category.toUpperCase()}
